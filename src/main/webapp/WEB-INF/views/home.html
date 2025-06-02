@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Danh sách chuyến xe</h2>
+<form th:action="@{/home}" method="get">
+    Điểm đi: <input type="text" name="departure" th:value="${departure}" />
+    Điểm đến: <input type="text" name="destination" th:value="${destination}" />
+    <button type="submit">Tìm kiếm</button>
+</form>
+<table border="1">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Điểm đi</th>
+        <th>Điểm đến</th>
+        <th>Giờ khởi hành</th>
+        <th>Giá</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="trip, iStat : ${trips}">
+        <td th:text="${iStat.index + 1}"></td>
+        <td th:text="${trip.departure}"></td>
+        <td th:text="${trip.destination}"></td>
+        <td th:text="${#temporals.format(trip.departureTime, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:text="${trip.price}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <span th:if="${currentPage > 1}">
+        <a th:href="@{/home(page=${currentPage - 1}, departure=${departure}, destination=${destination})}">Trang trước</a>
+    </span>
+
+    <span th:text="'Trang ' + ${currentPage} + ' / ' + ${totalPages}"></span>
+
+    <span th:if="${currentPage < totalPages}">
+        <a th:href="@{/home(page=${currentPage + 1}, departure=${departure}, destination=${destination})}">Trang sau</a>
+    </span>
+</div>
+</body>
+</html>

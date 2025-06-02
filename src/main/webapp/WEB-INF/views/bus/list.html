@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sách Xe Bus</h1>
+<a th:href="@{/bus/add}">Thêm mới</a>
+<br/><br/>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Biển số</th>
+        <th>Loại xe</th>
+        <th>Số hàng</th>
+        <th>Số cột</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bus : ${busList}">
+        <td th:text="${bus.licensePlate}">Biển số</td>
+        <td th:text="${bus.busType}">Loại xe</td>
+        <td th:text="${bus.rowSeat}">Số hàng</td>
+        <td th:text="${bus.colSeat}">Số cột</td>
+        <td>
+            <a th:href="@{/bus/edit/{id}(id=${bus.id})}">Sửa</a> |
+            <a th:href="@{/bus/delete/{id}(id=${bus.id})}"
+               onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Danh sách Ghế</h1>
+<a th:href="@{/bus/list}">Quay về Danh sách Xe Bus</a>
+<br/><br/>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tên Ghế</th>
+        <th>Giá</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Duyệt danh sách seatList -->
+    <tr th:each="seat : ${seatList}">
+        <td th:text="${seat.name}">Tên ghế</td>
+        <td th:text="${seat.price}">Giá</td>
+        <td th:text="${seat.status}">Trạng thái</td>
+        <td>
+            <a th:href="@{/seat/edit/{id}(id=${seat.id})}">Sửa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

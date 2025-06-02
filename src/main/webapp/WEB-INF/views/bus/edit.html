@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Chỉnh sửa Xe Bus</h1>
+<form th:action="@{/bus/edit}" th:object="${bus}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label>Biển số:
+            <input type="text" th:field="*{licensePlate}" />
+        </label>
+        <div th:if="${#fields.hasErrors('licensePlate')}" th:errors="*{licensePlate}" class="error"></div>
+    </div>
+    <div>
+        <label>Loại xe:
+            <select th:field="*{busType}">
+                <option value="VIP">VIP</option>
+                <option value="LUXURY">LUXURY</option>
+                <option value="NORMAL">NORMAL</option>
+            </select>
+        </label>
+        <div th:if="${#fields.hasErrors('busType')}" th:errors="*{busType}" class="error"></div>
+    </div>
+    <div>
+        <label>Số hàng:
+            <input type="number" th:field="*{rowSeat}" min="1" />
+        </label>
+        <div th:if="${#fields.hasErrors('rowSeat')}" th:errors="*{rowSeat}" class="error"></div>
+    </div>
+    <div>
+        <label>Số cột:
+            <input type="number" th:field="*{colSeat}" min="1" />
+        </label>
+        <div th:if="${#fields.hasErrors('colSeat')}" th:errors="*{colSeat}" class="error"></div>
+    </div>
+    <div>
+        <label>Ảnh:
+            <input type="file" th:field="*{image}" />
+        </label>
+        <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error"></div>
+    </div>
+    <div>
+        <button type="submit">Cập nhật</button>
+        <a th:href="@{/bus/list}">Hủy</a>
+    </div>
+</form>
+</body>
+</html>
